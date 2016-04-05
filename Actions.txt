@@ -1,11 +1,38 @@
 *** Settings ***
 Library           AppiumLibrary
+Library           lib.py
+Resource          ./ElementXPaths.txt
 
 *** Keywords ***
 List More
-    Click Element    xpath=//*[@resource-id="com.skysoft.kkbox.android:id/button_start_free_trial"]
-    Wait Until Page Contains Element    xpath=//*[@resource-id="com.skysoft.kkbox.android:id/label_more"]    timeout=30s
-    Click Element    xpath=//*[@resource-id="com.skysoft.kkbox.android:id/label_more"]
-    Wait Until Page Contains Element    xpath=//*[@resource-id="com.skysoft.kkbox.android:id/listview"]    timeout=30s
+    Click Element    ${LANDING_PAGE.TAIL_BUTTON}
+    Wait Until Page Contains Element    ${HOME.MORE_BUTTON}    timeout=${TIMEOUT}
+    Click Element    ${HOME.MORE_BUTTON}
+    Wait Until Page Contains Element    ${MORE.ALBUM_LIST}    timeout=${TIMEOUT}
 
-Play track
+List Tracks
+    Click Element    ${MORE.FIRST_ALBUM}
+    Wait Until Page Contains Element    ${ALBUM_LIST.FIRST_TRACK}    timeout=${TIMEOUT}
+
+Play Track
+    Click Element    ${ALBUM_LIST.FIRST_TRACK}
+    Comment    when the app run in another device
+    #Wait Until Page Contains Element    xpath=//*[@resource-id="android:id/alertTitle"]
+    #Click Element    xpath=//*[@resource-id="android:id/button1"]
+    Wait Until Page Contains Element    ${NAVIGATION_BAR.BUTTON}    timeout=${TIMEOUT}
+
+Scroll To Screen Button
+    ${size}=    Get Element Size    ${MORE.ALBUM_LIST}
+    Swipe    0    ${size['height']}    0    1
+
+Count Albums
+    ${texts}=    Get Empty List
+    : FOR    ${i}    IN RANGE    3
+    \    ${old}=    Set Variable    ${texts}
+    \    ${elements}=    Get Elements    ${MORE.ALBUM_TEXTS}
+    \    ${texts}=    Get Text Set    ${elements}    ${texts}
+    \    Scroll To Screen Button
+    \    ${is_exist_loop}=    Is List Equal    ${old}    ${texts}
+    \    Exit For Loop If    ${is_exist_loop}
+    ${length}=    Get Length    ${texts}
+    [Return]    ${length}

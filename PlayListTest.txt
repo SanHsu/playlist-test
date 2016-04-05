@@ -1,0 +1,46 @@
+*** Settings ***
+Test Setup        Setup
+Test Teardown     tearDown
+Library           AppiumLibrary
+Library           Collections
+Library           lib.py
+Resource          ./AndroidConfig.txt
+Resource          ./Actions.txt
+Resource          ./ElementXPaths.txt
+Resource          Constant.txt
+
+*** Variables ***
+
+*** Test Cases ***
+testTrackList
+    List More
+    Wait Until Page Contains Element    ${MORE.FIRST_ALBUM}
+
+testListHasTenElements
+    List More
+    ${count}=    Count Albums
+    ${count}=    Convert To String    ${count}
+    Should Be Equal    10    ${count}
+
+testPlayTrack
+    List More
+    List Tracks
+    Play Track
+    Comment    check play status
+    ${content}=    Get Element Attribute    ${NAVIGATION_BAR.BUTTON}    ${CONTENT_DESC}
+    Should Be Equal    ${PLAYING_STATUS}    ${content}
+    Comment    check playing track
+    ${select_track_title}=    Get Element Attribute    ${ALBUM_LIST.FIRST_TRACK.TITLE}    ${TRACK_NAME}
+    ${playing_track_title}=    Get Element Attribute    ${NAVIGATION_BAR.TRACK.TITLE}    ${TRACK_NAME}
+    Should Be Equal    ${select_track_title}    ${playing_track_title}
+    Comment    stop playing track
+    Click Element    ${NAVIGATION_BAR.BUTTON}
+
+*** Keywords ***
+Setup
+    Open Application    ${REMOTE_SERVER}    platformName=${PLATFORM_NAME}    platformVersion=${PLATFORM_VERSION}    deviceName=${DEVICE_NAME}    app=${APP_PATH}    appPackage=${APP_PACKAGE}
+    ...    appActivity=${APP_ACTIVITY}
+    Wait Until Page Contains Element    ${LANDING_PAGE.TAIL_BUTTON}    timeout=${TIMEOUT}
+
+TearDown
+    Close All Applications
