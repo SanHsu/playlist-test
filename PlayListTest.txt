@@ -3,11 +3,11 @@ Test Setup        Setup
 Test Teardown     tearDown
 Library           AppiumLibrary
 Library           Collections
-Library           lib.py
+Library           ./lib.py
 Resource          ./AndroidConfig.txt
 Resource          ./Actions.txt
 Resource          ./ElementXPaths.txt
-Resource          Constant.txt
+Resource          ./Constant.txt
 
 *** Variables ***
 
