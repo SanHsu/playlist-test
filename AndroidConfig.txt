@@ -1,0 +1,8 @@
+*** Variables ***
+${APP_PATH}       ${CURDIR}\\KKBOX.apk
+${REMOTE_SERVER}    http://127.0.0.1:4723/wd/hub
+${PLATFORM_NAME}    Android
+${PLATFORM_VERSION}    5.1.1
+${DEVICE_NAME}    BX903GECQV    # 192.168.0.15:5555
+${APP_PACKAGE}    com.skysoft.kkbox.android
+${APP_ACTIVITY}    HomeActivity

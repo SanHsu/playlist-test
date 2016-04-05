@@ -1,0 +1,11 @@
+*** Settings ***
+Library           AppiumLibrary
+
+*** Keywords ***
+List More
+    Click Element    xpath=//*[@resource-id="com.skysoft.kkbox.android:id/button_start_free_trial"]
+    Wait Until Page Contains Element    xpath=//*[@resource-id="com.skysoft.kkbox.android:id/label_more"]    timeout=30s
+    Click Element    xpath=//*[@resource-id="com.skysoft.kkbox.android:id/label_more"]
+    Wait Until Page Contains Element    xpath=//*[@resource-id="com.skysoft.kkbox.android:id/listview"]    timeout=30s
+
+Play track
