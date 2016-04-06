@@ -1,6 +1,6 @@
 *** Settings ***
 Test Setup        Setup
-Test Teardown     tearDown
+Test Teardown     TearDown
 Library           AppiumLibrary
 Library           Collections
 Library           ./lib.py
