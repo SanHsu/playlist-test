@@ -14,5 +14,3 @@ def get_text_set(elements, texts):
 def get_empty_list():
 	return []
 
-def is_list_equal(list1, list2):
-	return list1 == list2
