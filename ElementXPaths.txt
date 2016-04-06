@@ -2,6 +2,7 @@
 ${LANDING_PAGE.TAIL_BUTTON}    xpath=//*[@resource-id="com.skysoft.kkbox.android:id/button_start_free_trial"]
 ${HOME.MORE_BUTTON}    xpath=//*[@resource-id="com.skysoft.kkbox.android:id/label_more"]
 ${MORE.FIRST_ALBUM}    xpath=//*[@resource-id="com.skysoft.kkbox.android:id/listview"]/android.widget.RelativeLayout[1]
+${MORE.FIRST_ALBUM.TITLE}    xpath=//*[@resource-id="com.skysoft.kkbox.android:id/listview"]/android.widget.RelativeLayout[1]/android.widget.TextView
 ${MORE.ALBUM_LIST}    xpath=//*[@resource-id="com.skysoft.kkbox.android:id/listview"]
 ${MORE.ALBUM_TEXTS}    xpath=//*[@resource-id="com.skysoft.kkbox.android:id/listview"]/android.widget.RelativeLayout/android.widget.TextView
 ${ALBUM_LIST.FIRST_TRACK}    xpath=(//android.widget.RelativeLayout[@resource-id="com.skysoft.kkbox.android:id/layout_track"])[1]

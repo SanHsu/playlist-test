@@ -15,6 +15,8 @@ Resource          ./Constant.txt
 testTrackList
     List More
     Wait Until Page Contains Element    ${MORE.FIRST_ALBUM}
+    ${title}=    Get Element Attribute    ${MORE.FIRST_ALBUM.TITLE}    ${NAME}
+    Should Not Be Empty    ${title}
 
 testListHasTenElements
     List More
@@ -30,8 +32,8 @@ testPlayTrack
     ${content}=    Get Element Attribute    ${NAVIGATION_BAR.BUTTON}    ${CONTENT_DESC}
     Should Be Equal    ${PLAYING_STATUS}    ${content}
     Comment    check playing track
-    ${select_track_title}=    Get Element Attribute    ${ALBUM_LIST.FIRST_TRACK.TITLE}    ${TRACK_NAME}
-    ${playing_track_title}=    Get Element Attribute    ${NAVIGATION_BAR.TRACK.TITLE}    ${TRACK_NAME}
+    ${select_track_title}=    Get Element Attribute    ${ALBUM_LIST.FIRST_TRACK.TITLE}    ${NAME}
+    ${playing_track_title}=    Get Element Attribute    ${NAVIGATION_BAR.TRACK.TITLE}    ${NAME}
     Should Be Equal    ${select_track_title}    ${playing_track_title}
     Comment    stop playing track
     Click Element    ${NAVIGATION_BAR.BUTTON}

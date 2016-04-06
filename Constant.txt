@@ -2,6 +2,6 @@
 ${TIMEOUT}        30s
 ${CONTENT_DESC}    name
 ${PLAYING_STATUS}    暫停播放
-${TRACK_NAME}     text
+${NAME}           text
 ${LOOP_TIMES}     3
 @{ZERO_LIST}      0    0
